@@ -10,7 +10,7 @@ namespace 接口隔离
     {
         static void Main(string[] args)
         {
-            var driver = new Driver(new HeavyTank());
+            var driver = new Driver(new Car());
             driver.work();
         }
 
@@ -19,9 +19,9 @@ namespace 接口隔离
 
     class Driver
     {
-        public ITank _vehicle;
+        public IVehicle _vehicle;
 
-        public Driver(ITank vehicle)
+        public Driver(IVehicle vehicle)
         {
             _vehicle = vehicle;
         }
@@ -53,11 +53,16 @@ namespace 接口隔离
         }
     }
 
-    interface ITank
+    interface IWeapon
     {
-        void Run();
-
         void Fire();
+    }
+
+    
+
+    interface ITank:IWeapon,IVehicle
+    {
+        
     }
 
     class HeavyTank:ITank
